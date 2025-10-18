@@ -16,14 +16,13 @@ class CustomEmailSchema(BaseModel):
     body: str
 
 
-SUBSCRIBERS_LIST = TEST_ADMIN_EMAIL
 SUBJECT = 'Ново запитване през сайта!'
 
 
 def send_custom_email(email: CustomEmailSchema):
     """Actual email sending logic (runs in background)"""
     try:
-        send_email(SUBSCRIBERS_LIST, SUBJECT, email.body)
+        send_email(TEST_ADMIN_EMAIL, SUBJECT, email.body)
     except Exception as e:
         print(f"Email sending failed: {str(e)}")
         raise HTTPException(status_code=500, detail="Failed to send email")
