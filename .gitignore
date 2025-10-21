@@ -1,4 +1,4 @@
-.env
+smtp_sender/.env
 
 
 
@@ -106,7 +106,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+smtp_sender/.env
 .venv
 env/
 venv/
