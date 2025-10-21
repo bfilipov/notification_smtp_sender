@@ -22,6 +22,11 @@ async def send_email_endpoint(
     - Simple security check to filter mass bots
     - Actual sending happens in background
     """
-    print('here')
     background_tasks.add_task(send_custom_email, email, request, sec)
     return {"message": "Email sending started"}
+
+
+@app.get("/health")
+async def health_check():
+    """Health check endpoint for Docker"""
+    return {"status": "healthy", "service": "email-sender"}
