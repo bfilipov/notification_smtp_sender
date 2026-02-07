@@ -13,7 +13,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=["https://advokatvidin.com"],
     allow_credentials=True,
-    allow_methods=["GET", "POST"],
+    allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["user-agent", "accept-language", "origin", "sec", "content-type"],
     expose_headers=["*"],
 )
