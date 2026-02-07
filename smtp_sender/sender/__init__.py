@@ -67,8 +67,10 @@ def check_security(request: Request, sec_token):
     print(f'Sec token received: {sec_token}')
     print(f'Sec token Calculated: {expected_token}')
 
-    if sec_token != expected_token:
-        raise HTTPException(status_code=403, detail="Invalid security token")
+    if sec_token == expected_token:
+        print("Sec token verified")
+        return True
+    return False
 
 
 def send_custom_email(
@@ -77,10 +79,8 @@ def send_custom_email(
         sec_token: str,
 ):
     """Actual email sending logic (runs in background)"""
-    try:
-        print(SUBSCRIBERS)
-        check_security(request, sec_token)
+    print(SUBSCRIBERS)
+    if check_security(request, sec_token):
         send_email(SUBSCRIBERS, SUBJECT, email.body)
-    except Exception as e:
-        print(f"Email sending failed: {str(e)}")
-        raise HTTPException(status_code=500, detail="Failed to send email")
+
+
