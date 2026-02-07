@@ -2,4 +2,4 @@
 
 
 ### run server
-uvicorn main:app --reload
+uvicorn smtp_sender.app:app --reload

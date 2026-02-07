@@ -17,7 +17,7 @@ SUBJECT = 'Ново запитване през сайта!'
 class EnvSMTPConfig:
     def __init__(self):
         self.SMTP_SERVER = os.getenv('SMTP_SERVER')
-        self.PORT = int(os.getenv('PORT'))
+        self.PORT = int(os.getenv('SMTP_PORT'))
         self.SMTP_PASSWORD = os.getenv('SMTP_PASSWORD')
         self.SENDER_EMAIL = os.getenv('SENDER_EMAIL')
         self.SMTP_USERNAME = os.getenv('SMTP_USERNAME')
