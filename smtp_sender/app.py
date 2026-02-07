@@ -1,13 +1,23 @@
 from typing import Annotated
 
-from dotenv import load_dotenv
 from fastapi import FastAPI, BackgroundTasks, Header
+from fastapi.middleware.cors import CORSMiddleware
 from starlette.requests import Request
 
 from smtp_sender.models import CustomEmailSchema
 from smtp_sender.sender import send_custom_email
 
 app = FastAPI(title="Email Service")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://advokatvidin.com"],
+    allow_credentials=True,
+    allow_methods=["GET", "POST"],
+    allow_headers=["user-agent", "accept-language", "origin", "sec", "content-type"],
+    expose_headers=["*"],
+)
+
 
 @app.post("/send-email", status_code=202)
 async def send_email_endpoint(
